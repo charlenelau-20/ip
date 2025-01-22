@@ -5,14 +5,30 @@ public class ChitChat {
         Scanner scan = new Scanner(System.in);
 
         String line = "---------------------------------------------";
-        System.out.println(line + "\nHey there! I'm ChitChat\nWhat can I do for you?\n" + line);
+        System.out.println(line + "\nHey there, I'm ChitChat!\nWhat can I do for you?\n" + line);
 
-        String input = scan.nextLine();
+        String[] inputArr = new String[100];
+        int index = 0;
 
-        while (!input.equals("bye")) {
-            System.out.println(line + "\n" + input + "\n" + line);
-            input = scan.nextLine();
+        while (true) {
+            String input = scan.nextLine();
+
+            if (input.equals("list")) {
+                System.out.println(line);
+                for (int i = 0; i < index; i++) {
+                    System.out.println((i + 1) + "." + inputArr[i]);
+                }
+                System.out.println(line);
+            } else if (input.equals("bye")) {
+                System.out.println(line + "\nBye! Hope to see you again soon! :)\n" + line);
+                break;
+            } else {
+                if (index < inputArr.length) {
+                    inputArr[index] = input;
+                    System.out.println(line + "\nadded: " + input + "\n" + line);
+                    index++;
+                }
+            }
         }
-        System.out.println(line + "\nBye! Hope to see you again soon! :)\n" + line);
     }
 }
