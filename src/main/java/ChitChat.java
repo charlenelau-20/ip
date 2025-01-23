@@ -52,7 +52,7 @@ public class ChitChat {
                 } else if (input.startsWith("todo")) {
 
                     if (input.length() <= 5) {
-                        throw new ChitChatException("The description of a task cannot be empty!");
+                        throw new ChitChatException("The description of a task cannot be empty!\n" + line);
                     }
 
                     String description = input.substring(5);
