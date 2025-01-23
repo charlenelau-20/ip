@@ -4,7 +4,7 @@ public class ChitChat {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        String line = "---------------------------------------------";
+        String line = "--------------------------------------------------------";
         System.out.println(line + "\nHey there, I'm ChitChat!\nWhat can I do for you?\n" + line);
 
         Task[] task = new Task[100];
@@ -31,6 +31,29 @@ public class ChitChat {
                 System.out.println(line);
                 System.out.println("OK, I've marked this task as not done yet:\n  " + task[taskIndex]);
                 System.out.println(line);
+            } else if (input.startsWith("todo")) {
+                String description = input.substring(5);
+                task[index] = new Todo(description);
+                index++;
+                System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
+                System.out.println("Now you have " + index + " task(s) in the list\n" + line);
+            } else if (input.startsWith("deadline")) {
+                String[] part = input.substring(9).split(" /by ");
+                String description = part[0];
+                String by = part[1];
+                task[index] = new Deadline(description, by);
+                index++;
+                System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
+                System.out.println("Now you have " + index + " task(s) in the list\n" + line);
+            } else if (input.startsWith("event")) {
+                String[] part = input.substring(6).split(" /from | /to ");
+                String description = part[0];
+                String from = part[1];
+                String to = part[2];
+                task[index] = new Event(description, from, to);
+                index++;
+                System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
+                System.out.println("Now you have " + index + " task(s) in the list\n" + line);
             } else if (input.equals("bye")) {
                 System.out.println(line + "\nBye! Hope to see you again soon! :)\n" + line);
                 break;
