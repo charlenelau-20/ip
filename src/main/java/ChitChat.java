@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChitChat {
@@ -7,20 +8,19 @@ public class ChitChat {
         String line = "------------------------------------------------------------------------------------------";
         System.out.println(line + "\nHey there, I'm ChitChat!\nWhat can I do for you?\n" + line);
 
-        Task[] task = new Task[100];
-        int index = 0;
+        ArrayList<Task> task = new ArrayList<>();
 
         while (true) {
             try {
                 String input = scan.nextLine();
 
                 if (input.equals("list")) {
-                    if (index == 0) {
+                    if (task.isEmpty()) {
                         System.out.println(line + "\nYour task list is empty!\n" + line);
                     } else {
                         System.out.println(line + "\nHere are the tasks in your list:");
-                        for (int i = 0; i < index; i++) {
-                            System.out.println((i + 1) + "." + task[i]);
+                        for (int i = 0; i < task.size(); i++) {
+                            System.out.println((i + 1) + "." + task.get(i));
                         }
                         System.out.println(line);
                     }
@@ -28,25 +28,25 @@ public class ChitChat {
                 } else if (input.startsWith("mark")) {
                     int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
-                    if (taskIndex < 0 || taskIndex >= index) {
+                    if (taskIndex < 0 || taskIndex >= task.size()) {
                         throw new ChitChatException("Please enter a valid task number!\n" + line);
                     }
 
-                    task[taskIndex].setDone();
+                    task.get(taskIndex).setDone();
                     System.out.println(line);
-                    System.out.println("Nice! I've marked this task as done:\n  " + task[taskIndex]);
+                    System.out.println("Nice! I've marked this task as done:\n  " + task.get(taskIndex));
                     System.out.println(line);
 
                 } else if (input.startsWith("unmark")) {
                     int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
-                    if (taskIndex < 0 || taskIndex >= index) {
+                    if (taskIndex < 0 || taskIndex >= task.size()) {
                         throw new ChitChatException("Please enter a valid task number!\n" + line);
                     }
 
-                    task[taskIndex].setNotDone();
+                    task.get(taskIndex).setNotDone();
                     System.out.println(line);
-                    System.out.println("OK, I've marked this task as not done yet:\n  " + task[taskIndex]);
+                    System.out.println("OK, I've marked this task as not done yet:\n  " + task.get(taskIndex));
                     System.out.println(line);
 
                 } else if (input.startsWith("todo")) {
@@ -56,10 +56,9 @@ public class ChitChat {
                     }
 
                     String description = input.substring(5);
-                    task[index] = new Todo(description);
-                    index++;
-                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
-                    System.out.println("Now you have " + index + " task(s) in the list\n" + line);
+                    task.add(new Todo(description));
+                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task.get(task.size() - 1));
+                    System.out.println("Now you have " + task.size() + " task(s) in the list.\n" + line);
 
                 } else if (input.startsWith("deadline")) {
 
@@ -75,10 +74,9 @@ public class ChitChat {
                         throw new ChitChatException("Invalid format! Please use: deadline <task> /by <when>.\n" + line);
                     }
 
-                    task[index] = new Deadline(description, by);
-                    index++;
-                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
-                    System.out.println("Now you have " + index + " task(s) in the list\n" + line);
+                    task.add(new Deadline(description, by));
+                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task.get(task.size() - 1));
+                    System.out.println("Now you have " + task.size() + " task(s) in the list.\n" + line);
 
                 } else if (input.startsWith("event")) {
 
@@ -97,10 +95,22 @@ public class ChitChat {
                                 "Please use: event <event name> /from <when> /to <when>.\n" + line);
                     }
 
-                    task[index] = new Event(description, from, to);
-                    index++;
-                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task[index - 1]);
-                    System.out.println("Now you have " + index + " task(s) in the list\n" + line);
+                    task.add(new Event(description, from, to));
+                    System.out.println(line + "\nGot it. I've added this task:\n" + "  " + task.get(task.size() - 1));
+                    System.out.println("Now you have " + task.size() + " task(s) in the list.\n" + line);
+
+                } else if (input.startsWith("delete")) {
+                    int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+
+                    if (taskIndex < 0 || taskIndex >= task.size()) {
+                        throw new ChitChatException("Please enter a valid task number!\n" + line);
+                    }
+
+                    System.out.println(line);
+                    System.out.println("Noted. I've removed this task:\n  " + task.get(taskIndex));
+                    task.remove(taskIndex);
+                    System.out.println("Now you have " + task.size() + " task(s) in the list.");
+                    System.out.println(line);
 
                 } else if (input.equals("bye")) {
                     System.out.println(line + "\nBye! Hope to see you again soon! :)\n" + line);
