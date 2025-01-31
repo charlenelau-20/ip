@@ -19,6 +19,9 @@ then
     exit 1
 fi
 
+# remove chitchat.txt before each time the test is run
+rm -f ./data/chitchat.txt
+
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin ChitChat < input.txt > ACTUAL.TXT
 
