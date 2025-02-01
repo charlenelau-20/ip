@@ -2,6 +2,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * ChitChat is a task manager program that allows users to manage tasks through a command-line interface.
+ * Tasks are saved to a file ('chitchat.txt') on the hard disk and the list is loaded on start up of the chatbot.
+ */
 public class ChitChat {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
