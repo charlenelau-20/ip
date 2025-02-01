@@ -80,8 +80,8 @@ public class ChitChat {
                 } else if (input.startsWith("deadline")) {
 
                     if (!input.contains(" /by ")) {
-                        throw new ChitChatException("Invalid format! Please use: deadline <task> /by <when>.\n"
-                                + line);
+                        throw new ChitChatException(
+                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n" + line);
                     }
 
                     String[] parts = input.substring(9).split(" /by ");
@@ -89,8 +89,8 @@ public class ChitChat {
                     String by = parts[1];
 
                     if (description.isEmpty() || by.isEmpty()) {
-                        throw new ChitChatException("Invalid format! Please use: deadline <task> /by <when>.\n"
-                                + line);
+                        throw new ChitChatException(
+                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n" + line);
                     }
 
                     tasks.add(new Deadline(description, by));
@@ -102,8 +102,9 @@ public class ChitChat {
                 } else if (input.startsWith("event")) {
 
                     if (!input.contains(" /from ") || !input.contains(" /to ")) {
-                        throw new ChitChatException("Invalid format! " +
-                                "Please use: event <event name> /from <when> /to <when>.\n" + line);
+                        throw new ChitChatException("Invalid format! "
+                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n"
+                                + line);
                     }
 
                     String[] parts = input.substring(6).split(" /from | /to ");
@@ -112,8 +113,9 @@ public class ChitChat {
                     String to = parts[2];
 
                     if (description.isEmpty() || from.isEmpty() || to.isEmpty()) {
-                        throw new ChitChatException("Invalid format! " +
-                                "Please use: event <event name> /from <when> /to <when>.\n" + line);
+                        throw new ChitChatException("Invalid format! "
+                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n"
+                                + line);
                     }
 
                     tasks.add(new Event(description, from, to));

@@ -1,9 +1,14 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a task of type "Event".
  */
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    private LocalDateTime from;
+    private LocalDateTime to;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     /**
      * Initializes an Event task object with a description, start time, and end time.
@@ -14,8 +19,8 @@ public class Event extends Task {
      */
     public Event(String description, String from, String to) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.from = LocalDateTime.parse(from, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        this.to = LocalDateTime.parse(to, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     /**
@@ -26,7 +31,7 @@ public class Event extends Task {
      * @param to End time of task.
      * @param isDone Completion status of task.
      */
-    public Event(String description, String from, String to, boolean isDone) {
+    public Event(String description, LocalDateTime from, LocalDateTime to, boolean isDone) {
         super(description, isDone);
         this.from = from;
         this.to = to;
@@ -34,11 +39,12 @@ public class Event extends Task {
 
     @Override
     public String toFileFormat() {
-        return "E | " + super.toFileFormat() + " | " + from + " | " + to;
+        return "E | " + super.toFileFormat() + " | " + from.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"))
+                + " | " + to.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString() + " (from: " + from.format(FORMATTER) + " to: " + to.format(FORMATTER) + ")";
     }
 }

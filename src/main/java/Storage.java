@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -58,9 +60,15 @@ public class Storage {
             case "T":
                 return new Todo(description, isDone);
             case  "D":
-                return new Deadline(description, parts[3], isDone);
+                LocalDateTime by = LocalDateTime.parse(parts[3],
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                return new Deadline(description, by, isDone);
             case "E":
-                return new Event(description, parts[3], parts[4], isDone);
+                LocalDateTime from = LocalDateTime.parse(parts[3],
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                LocalDateTime to = LocalDateTime.parse(parts[4],
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                return new Event(description, from, to, isDone);
             default:
                 return null;
             }
