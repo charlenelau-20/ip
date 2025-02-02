@@ -22,7 +22,7 @@ public class Deadline extends Task {
         try {
             this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         } catch (DateTimeParseException e) {
-            throw new ChitChatException("Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n");
+            throw new ChitChatException("Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.");
         }
     }
 

@@ -30,12 +30,14 @@ public class Storage {
      * @param tasks List of tasks to be saved.
      * @throws IOException If there is a problem writing to the file.
      */
-    public void saveTasks(ArrayList<Task> tasks) throws IOException {
+    public void saveTasks(TaskList tasks) throws IOException {
+        ArrayList<Task> taskList = tasks.getTasks();
+
         File file = new File(filePath);
         file.getParentFile().mkdirs();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (Task task : tasks) {
+            for (Task task : taskList) {
                 writer.write(task.toFileFormat());
                 writer.newLine();
             }
