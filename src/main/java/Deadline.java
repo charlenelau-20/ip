@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a task of type "Deadline".
@@ -14,10 +15,15 @@ public class Deadline extends Task {
      *
      * @param description Description of task.
      * @param by Deadline of task.
+     * @throws ChitChatException If 'by' is not in the correct format.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws ChitChatException {
         super(description);
-        this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        try {
+            this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        } catch (DateTimeParseException e) {
+            throw new ChitChatException("Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n");
+        }
     }
 
     /**

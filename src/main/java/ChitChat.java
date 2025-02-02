@@ -20,7 +20,8 @@ public class ChitChat {
             tasks = new ArrayList<>();
         }
 
-        String line = "------------------------------------------------------------------------------------------";
+        String line = "---------------------------------------------------"
+                + "-------------------------------------------------------";
         System.out.println(line + "\nHey there, I'm ChitChat!\nWhat can I do for you?\n" + line);
 
         while (true) {
@@ -42,7 +43,7 @@ public class ChitChat {
                     int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
                     if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new ChitChatException("Please enter a valid task number!\n" + line);
+                        throw new ChitChatException("Please enter a valid task number!\n");
                     }
 
                     tasks.get(taskIndex).setDone();
@@ -55,7 +56,7 @@ public class ChitChat {
                     int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
                     if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new ChitChatException("Please enter a valid task number!\n" + line);
+                        throw new ChitChatException("Please enter a valid task number!\n");
                     }
 
                     tasks.get(taskIndex).setNotDone();
@@ -67,7 +68,7 @@ public class ChitChat {
                 } else if (input.startsWith("todo")) {
 
                     if (input.length() <= 5) {
-                        throw new ChitChatException("The description of a task cannot be empty!\n" + line);
+                        throw new ChitChatException("The description of a task cannot be empty!\n");
                     }
 
                     String description = input.substring(5);
@@ -81,7 +82,7 @@ public class ChitChat {
 
                     if (!input.contains(" /by ")) {
                         throw new ChitChatException(
-                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n" + line);
+                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n");
                     }
 
                     String[] parts = input.substring(9).split(" /by ");
@@ -90,7 +91,7 @@ public class ChitChat {
 
                     if (description.isEmpty() || by.isEmpty()) {
                         throw new ChitChatException(
-                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n" + line);
+                                "Invalid format! Please use: deadline <task> /by <yyyy-MM-dd HHmm>.\n");
                     }
 
                     tasks.add(new Deadline(description, by));
@@ -103,8 +104,7 @@ public class ChitChat {
 
                     if (!input.contains(" /from ") || !input.contains(" /to ")) {
                         throw new ChitChatException("Invalid format! "
-                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n"
-                                + line);
+                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n");
                     }
 
                     String[] parts = input.substring(6).split(" /from | /to ");
@@ -114,8 +114,7 @@ public class ChitChat {
 
                     if (description.isEmpty() || from.isEmpty() || to.isEmpty()) {
                         throw new ChitChatException("Invalid format! "
-                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n"
-                                + line);
+                                + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n");
                     }
 
                     tasks.add(new Event(description, from, to));
@@ -128,7 +127,7 @@ public class ChitChat {
                     int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
                     if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new ChitChatException("Please enter a valid task number!\n" + line);
+                        throw new ChitChatException("Please enter a valid task number!\n");
                     }
 
                     System.out.println(line);
@@ -144,11 +143,11 @@ public class ChitChat {
 
                 } else {
                     throw new ChitChatException("Sorry, you need to use keywords "
-                            + "todo/deadline/event to specify your tasks!\n" + line);
+                            + "todo/deadline/event to specify your tasks!\n");
                 }
 
             } catch (ChitChatException | IOException e) {
-                System.out.println(line + "\nError: " + e.getMessage());
+                System.out.println(line + "\nError: " + e.getMessage() + line);
             }
         }
     }

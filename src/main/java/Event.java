@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a task of type "Event".
@@ -11,16 +12,22 @@ public class Event extends Task {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     /**
-     * Initializes an Event task object with a description, start time, and end time.
+     * Initializes an Event task object with a description, start time ('from'), and end time ('to').
      *
      * @param description Description of task.
      * @param from Start time of task.
      * @param to End time of task.
+     * @throws ChitChatException If 'from' or 'to' are not in the correct format.
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, String from, String to) throws ChitChatException {
         super(description);
-        this.from = LocalDateTime.parse(from, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-        this.to = LocalDateTime.parse(to, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        try {
+            this.from = LocalDateTime.parse(from, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            this.to = LocalDateTime.parse(to, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        } catch (DateTimeParseException e) {
+            throw new ChitChatException("Invalid format! "
+                    + "Please use: event <event name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>.\n");
+        }
     }
 
     /**
