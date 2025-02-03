@@ -46,7 +46,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println("Hey there, I'm chitchat.ChitChat!\nWhat can I do for you?");
+        System.out.println("Hey there, I'm ChitChat!\nWhat can I do for you?");
         showLine();
     }
 
