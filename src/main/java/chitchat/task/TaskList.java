@@ -1,3 +1,8 @@
+package chitchat.task;
+
+import chitchat.exception.ChitChatException;
+import chitchat.ui.Ui;
+
 import java.util.ArrayList;
 
 /**
@@ -7,14 +12,14 @@ public class TaskList {
     private final ArrayList<Task> tasks;
 
     /**
-     * Constructs a TaskList object with an empty task list.
+     * Constructs a chitchat.task.TaskList object with an empty task list.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Constructs a TaskList object with a preloaded task list.
+     * Constructs a chitchat.task.TaskList object with a preloaded task list.
      *
      * @param loadedTasks List of tasks loaded from the storage file.
      */
@@ -25,7 +30,7 @@ public class TaskList {
     /**
      * Adds a task to the task list.
      *
-     * @param task Task to be added to task list.
+     * @param task chitchat.task.Task to be added to task list.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -73,7 +78,7 @@ public class TaskList {
     /**
      * Lists the tasks in the task list.
      *
-     * @param ui Ui instance used to display the tasks.
+     * @param ui chitchat.ui.Ui instance used to display the tasks.
      */
     public void listTasks(Ui ui) {
         if (tasks.isEmpty()) {
@@ -112,7 +117,7 @@ public class TaskList {
     /**
      * Retrieves and returns the task list.
      *
-     * @return Task list.
+     * @return chitchat.task.Task list.
      */
     public ArrayList<Task> getTasks() {
         return tasks;

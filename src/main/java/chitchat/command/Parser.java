@@ -1,3 +1,13 @@
+package chitchat.command;
+
+import chitchat.exception.ChitChatException;
+import chitchat.storage.Storage;
+import chitchat.task.Deadline;
+import chitchat.task.Event;
+import chitchat.task.TaskList;
+import chitchat.task.Todo;
+import chitchat.ui.Ui;
+
 import java.io.IOException;
 
 /**
@@ -9,11 +19,11 @@ public class Parser {
     private final Storage storage;
 
     /**
-     * Constructs a Parser object which processes user commands.
+     * Constructs a chitchat.command.Parser object which processes user commands.
      *
-     * @param taskList Task list.
+     * @param taskList chitchat.task.Task list.
      * @param ui User interface to display messages to the user.
-     * @param storage Storage to store saved tasks.
+     * @param storage chitchat.storage.Storage to store saved tasks.
      */
     public Parser(TaskList taskList, Ui ui, Storage storage) {
         this.taskList = taskList;

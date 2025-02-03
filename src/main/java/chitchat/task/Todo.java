@@ -1,10 +1,12 @@
+package chitchat.task;
+
 /**
- * Represents a task of type "Todo".
+ * Represents a task of type "chitchat.task.Todo".
  */
 public class Todo extends Task {
 
     /**
-     * Initializes a Todo task object with a description of the task.
+     * Initializes a chitchat.task.Todo task object with a description of the task.
      *
      * @param description Description of task.
      */
@@ -13,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Initializes a Todo task object with a description and completion status of the task.
+     * Initializes a chitchat.task.Todo task object with a description and completion status of the task.
      *
      * @param description Description of task.
      * @param isDone Completion status of task.

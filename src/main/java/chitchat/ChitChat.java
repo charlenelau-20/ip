@@ -1,6 +1,11 @@
+package chitchat;
+
+import chitchat.command.Parser;
+import chitchat.storage.Storage;
+import chitchat.task.TaskList;
+import chitchat.ui.Ui;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A task manager program that allows users to manage tasks through a command-line interface.

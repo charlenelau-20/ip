@@ -1,3 +1,5 @@
+package chitchat.ui;
+
 import java.util.Scanner;
 
 /**
@@ -7,7 +9,7 @@ public class Ui {
     private final Scanner scanner;
 
     /**
-     * Constructs a Ui object and initializes a Scanner to read user input.
+     * Constructs a chitchat.ui.Ui object and initializes a Scanner to read user input.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -44,7 +46,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println("Hey there, I'm ChitChat!\nWhat can I do for you?");
+        System.out.println("Hey there, I'm chitchat.ChitChat!\nWhat can I do for you?");
         showLine();
     }
 

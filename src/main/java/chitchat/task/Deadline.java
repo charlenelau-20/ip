@@ -1,9 +1,13 @@
+package chitchat.task;
+
+import chitchat.exception.ChitChatException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a task of type "Deadline".
+ * Represents a task of type "chitchat.task.Deadline".
  */
 public class Deadline extends Task {
 
@@ -11,10 +15,10 @@ public class Deadline extends Task {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     /**
-     * Initializes a Deadline task object with a description and a specified deadline ('by').
+     * Initializes a chitchat.task.Deadline task object with a description and a specified deadline ('by').
      *
      * @param description Description of task.
-     * @param by Deadline of task.
+     * @param by chitchat.task.Deadline of task.
      * @throws ChitChatException If 'by' is not in the correct format.
      */
     public Deadline(String description, String by) throws ChitChatException {
@@ -27,10 +31,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Initializes a Deadline task object with a description, a specified deadline ('by'), and completion status.
+     * Initializes a chitchat.task.Deadline task object with a description, a specified deadline ('by'), and completion status.
      *
      * @param description Description of task.
-     * @param by Deadline of task.
+     * @param by chitchat.task.Deadline of task.
      * @param isDone Completion status of task.
      */
     public Deadline(String description, LocalDateTime by, boolean isDone) {
