@@ -1,10 +1,12 @@
+package chitchat.exception;
+
 /**
- * Custom exception class for handling errors in ChitChat.
+ * Custom exception class for handling errors in chitchat.ChitChat.
  */
 public class ChitChatException extends Exception {
 
     /**
-     * Constructs a ChitChatException with a specified error message.
+     * Constructs a chitchat.exception.ChitChatException with a specified error message.
      *
      * @param message Error message.
      */

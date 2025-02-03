@@ -1,10 +1,13 @@
-import java.time.LocalDate;
+package chitchat.task;
+
+import chitchat.exception.ChitChatException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a task of type "Event".
+ * Represents a task of type "chitchat.task.Event".
  */
 public class Event extends Task {
     private LocalDateTime from;
@@ -12,7 +15,7 @@ public class Event extends Task {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     /**
-     * Initializes an Event task object with a description, start time ('from'), and end time ('to').
+     * Initializes an chitchat.task.Event task object with a description, start time ('from'), and end time ('to').
      *
      * @param description Description of task.
      * @param from Start time of task.
@@ -31,7 +34,7 @@ public class Event extends Task {
     }
 
     /**
-     * Initializes an Event task object with a description, start time, end time, and completion status.
+     * Initializes an chitchat.task.Event task object with a description, start time, end time, and completion status.
      *
      * @param description Description of task.
      * @param from Start time of task.
