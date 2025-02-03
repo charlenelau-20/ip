@@ -1,9 +1,9 @@
 package chitchat.task;
 
+import java.util.ArrayList;
+
 import chitchat.exception.ChitChatException;
 import chitchat.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Handles operations involving the task list.

@@ -1,18 +1,19 @@
 package chitchat.task;
 
-import chitchat.exception.ChitChatException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import chitchat.exception.ChitChatException;
 
 /**
  * Represents a task of type "chitchat.task.Deadline".
  */
 public class Deadline extends Task {
 
-    private LocalDateTime by;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
+
+    private LocalDateTime by;
 
     /**
      * Initializes a chitchat.task.Deadline task object with a description and a specified deadline ('by').
@@ -31,7 +32,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Initializes a chitchat.task.Deadline task object with a description, a specified deadline ('by'), and completion status.
+     * Initializes a chitchat.task.Deadline task object with a description, a specified deadline ('by'),
+     * and completion status.
      *
      * @param description Description of task.
      * @param by chitchat.task.Deadline of task.

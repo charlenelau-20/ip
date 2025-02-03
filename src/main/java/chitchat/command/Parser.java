@@ -1,5 +1,7 @@
 package chitchat.command;
 
+import java.io.IOException;
+
 import chitchat.exception.ChitChatException;
 import chitchat.storage.Storage;
 import chitchat.task.Deadline;
@@ -7,8 +9,6 @@ import chitchat.task.Event;
 import chitchat.task.TaskList;
 import chitchat.task.Todo;
 import chitchat.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Handles user commands by parsing input and executing corresponding actions.

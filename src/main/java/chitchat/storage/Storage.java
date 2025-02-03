@@ -1,20 +1,20 @@
 package chitchat.storage;
 
-import chitchat.task.Deadline;
-import chitchat.task.Event;
-import chitchat.task.Task;
-import chitchat.task.TaskList;
-import chitchat.task.Todo;
-
-import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import chitchat.task.Deadline;
+import chitchat.task.Event;
+import chitchat.task.Task;
+import chitchat.task.TaskList;
+import chitchat.task.Todo;
 
 /**
  * Manages the loading and saving of tasks to and from a file ('chitchat.txt').
@@ -69,7 +69,7 @@ public class Storage {
             switch (taskType) {
             case "T":
                 return new Todo(description, isDone);
-            case  "D":
+            case "D":
                 LocalDateTime by = LocalDateTime.parse(parts[3],
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
                 return new Deadline(description, by, isDone);
