@@ -36,6 +36,7 @@ application {
 shadowJar {
     archiveBaseName = "chitchat"
     archiveClassifier = null
+    archiveFileName = "chitchat.jar"
 }
 
 checkstyle {
