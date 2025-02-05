@@ -70,14 +70,11 @@ public class Storage {
             case "T":
                 return new Todo(description, isDone);
             case "D":
-                LocalDateTime by = LocalDateTime.parse(parts[3],
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                LocalDateTime by = LocalDateTime.parse(parts[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
                 return new Deadline(description, by, isDone);
             case "E":
-                LocalDateTime from = LocalDateTime.parse(parts[3],
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-                LocalDateTime to = LocalDateTime.parse(parts[4],
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                LocalDateTime from = LocalDateTime.parse(parts[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+                LocalDateTime to = LocalDateTime.parse(parts[4], DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
                 return new Event(description, from, to, isDone);
             default:
                 return null;
