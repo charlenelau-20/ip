@@ -10,7 +10,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Initializes a chitchat.task.Task object with a description of the task.
+     * Initializes a Task object with a description of the task.
      * The default completion status of a task is set to be not done.
      *
      * @param description Description of task.
@@ -21,7 +21,7 @@ public class Task {
     }
 
     /**
-     * Initializes a chitchat.task.Task object with a description and completion status of the task.
+     * Initializes a Task object with a description and completion status of the task.
      *
      * @param description Description of task.
      * @param isDone Completion status of task.

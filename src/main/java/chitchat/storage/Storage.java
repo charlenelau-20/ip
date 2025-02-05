@@ -23,7 +23,7 @@ public class Storage {
     private String filePath = "./data/chitchat.txt";
 
     /**
-     * Initializes a chitchat.storage.Storage object with given file path.
+     * Initializes a Storage object with given file path.
      * The file path specifies where the task data is saved to or loaded from.
      *
      * @param filePath Path to the file where the tasks are stored.
@@ -57,7 +57,7 @@ public class Storage {
      * If the line is not in the correct format, null is returned.
      *
      * @param line Line of text to be parsed.
-     * @return chitchat.task.Task object if line is in the correct format or null if in incorrect format.
+     * @return Task object if line is in the correct format or null if in incorrect format.
      */
     private Task parseTasks(String line) {
         try {
@@ -92,7 +92,7 @@ public class Storage {
      * Loads the list of tasks from the file in the specified file path.
      * If the file doesn't exist, an empty list is returned.
      *
-     * @return List of chitchat.task.Task objects loaded from the file.
+     * @return List of Task objects loaded from the file.
      * @throws IOException If there is a problem reading from the file.
      */
     public ArrayList<Task> loadTasks() throws IOException {

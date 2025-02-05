@@ -12,14 +12,14 @@ public class TaskList {
     private final ArrayList<Task> tasks;
 
     /**
-     * Constructs a chitchat.task.TaskList object with an empty task list.
+     * Constructs a TaskList object with an empty task list.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Constructs a chitchat.task.TaskList object with a preloaded task list.
+     * Constructs a TaskList object with a preloaded task list.
      *
      * @param loadedTasks List of tasks loaded from the storage file.
      */
@@ -30,7 +30,7 @@ public class TaskList {
     /**
      * Adds a task to the task list.
      *
-     * @param task chitchat.task.Task to be added to task list.
+     * @param task Task to be added to task list.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -78,7 +78,7 @@ public class TaskList {
     /**
      * Lists the tasks in the task list.
      *
-     * @param ui chitchat.ui.Ui instance used to display the tasks.
+     * @param ui Ui instance used to display the tasks.
      */
     public void listTasks(Ui ui) {
         if (tasks.isEmpty()) {
@@ -90,6 +90,35 @@ public class TaskList {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println((i + 1) + "." + tasks.get(i));
+            }
+            ui.showLine();
+        }
+    }
+
+    /**
+     * Finds tasks is the list with matching keywords.
+     *
+     * @param keyword Keyword input by the user.
+     * @param ui Ui instance used to display the tasks.
+     */
+    public void findTasks(String keyword, Ui ui) {
+        ArrayList<Task> searchResults = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.toString().contains(keyword)) {
+                searchResults.add(task);
+            }
+        }
+
+        if (searchResults.isEmpty()) {
+            ui.showLine();
+            System.out.println("No matching tasks found!");
+            ui.showLine();
+        } else {
+            ui.showLine();
+            System.out.println("Here are the matching tasks found:");
+            for (int i = 0; i < searchResults.size(); i++) {
+                System.out.println((i + 1) + "." + searchResults.get(i));
             }
             ui.showLine();
         }
@@ -117,7 +146,7 @@ public class TaskList {
     /**
      * Retrieves and returns the task list.
      *
-     * @return chitchat.task.Task list.
+     * @return Task list.
      */
     public ArrayList<Task> getTasks() {
         return tasks;

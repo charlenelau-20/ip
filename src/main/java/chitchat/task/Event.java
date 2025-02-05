@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import chitchat.exception.ChitChatException;
 
 /**
- * Represents a task of type "chitchat.task.Event".
+ * Represents a task of type "Event".
  */
 public class Event extends Task {
 
@@ -16,7 +16,7 @@ public class Event extends Task {
     private LocalDateTime to;
 
     /**
-     * Initializes an chitchat.task.Event task object with a description, start time ('from'), and end time ('to').
+     * Initializes an Event task object with a description, start time ('from'), and end time ('to').
      *
      * @param description Description of task.
      * @param from Start time of task.
@@ -35,7 +35,7 @@ public class Event extends Task {
     }
 
     /**
-     * Initializes an chitchat.task.Event task object with a description, start time, end time, and completion status.
+     * Initializes an Event task object with a description, start time, end time, and completion status.
      *
      * @param description Description of task.
      * @param from Start time of task.

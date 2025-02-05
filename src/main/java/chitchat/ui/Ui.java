@@ -9,7 +9,7 @@ public class Ui {
     private final Scanner scanner;
 
     /**
-     * Constructs a chitchat.ui.Ui object and initializes a Scanner to read user input.
+     * Constructs a Ui object and initializes a Scanner to read user input.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
