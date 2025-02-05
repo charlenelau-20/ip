@@ -19,11 +19,11 @@ public class Parser {
     private final Storage storage;
 
     /**
-     * Constructs a chitchat.command.Parser object which processes user commands.
+     * Constructs a Parser object which processes user commands.
      *
-     * @param taskList chitchat.task.Task list.
+     * @param taskList Task list.
      * @param ui User interface to display messages to the user.
-     * @param storage chitchat.storage.Storage to store saved tasks.
+     * @param storage Storage to store saved tasks.
      */
     public Parser(TaskList taskList, Ui ui, Storage storage) {
         this.taskList = taskList;
@@ -72,7 +72,12 @@ public class Parser {
                     throw new ChitChatException("The description of a task cannot be empty!");
                 }
 
-                String description = input.substring(5);
+                String description = input.substring(5).trim();
+
+                if (description.isEmpty()) {
+                    throw new ChitChatException("Invalid format! Please use: todo <task>.");
+                }
+
                 taskList.addTask(new Todo(description));
                 ui.showLine();
                 System.out.println("Got it. I've added this task:\n" + "  "
@@ -90,7 +95,7 @@ public class Parser {
                 }
 
                 String[] parts = input.substring(9).split(" /by ");
-                String description = parts[0];
+                String description = parts[0].trim();
                 String by = parts[1];
 
                 if (description.isEmpty() || by.isEmpty()) {
@@ -115,7 +120,7 @@ public class Parser {
                 }
 
                 String[] parts = input.substring(6).split(" /from | /to ");
-                String description = parts[0];
+                String description = parts[0].trim();
                 String from = parts[1];
                 String to = parts[2];
 
@@ -147,6 +152,21 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle find command
+            } else if (input.startsWith("find")) {
+
+                if (input.length() <= 5) {
+                    throw new ChitChatException("Invalid format! Please use: find <keyword(s)>");
+                }
+
+                String keyword = input.substring(5).trim();
+
+                if (keyword.isEmpty()) {
+                    throw new ChitChatException("Invalid format! Please use: find <keyword(s)>");
+                }
+
+                taskList.findTasks(keyword, ui);
+                
             // Handle exit command
             } else if (input.equals("bye")) {
                 ui.showLine();
@@ -163,6 +183,10 @@ public class Parser {
         } catch (ChitChatException | IOException e) {
             ui.showLine();
             ui.showError(e.getMessage());
+            ui.showLine();
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            ui.showLine();
+            ui.showError("Please enter a valid task number!");
             ui.showLine();
         }
     }

@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import chitchat.exception.ChitChatException;
 
 /**
- * Represents a task of type "chitchat.task.Deadline".
+ * Represents a task of type "Deadline".
  */
 public class Deadline extends Task {
 
@@ -16,10 +16,10 @@ public class Deadline extends Task {
     private LocalDateTime by;
 
     /**
-     * Initializes a chitchat.task.Deadline task object with a description and a specified deadline ('by').
+     * Initializes a Deadline task object with a description and a specified deadline ('by').
      *
      * @param description Description of task.
-     * @param by chitchat.task.Deadline of task.
+     * @param by Deadline of task.
      * @throws ChitChatException If 'by' is not in the correct format.
      */
     public Deadline(String description, String by) throws ChitChatException {
@@ -32,11 +32,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Initializes a chitchat.task.Deadline task object with a description, a specified deadline ('by'),
+     * Initializes a Deadline task object with a description, a specified deadline ('by'),
      * and completion status.
      *
      * @param description Description of task.
-     * @param by chitchat.task.Deadline of task.
+     * @param by Deadline of task.
      * @param isDone Completion status of task.
      */
     public Deadline(String description, LocalDateTime by, boolean isDone) {
