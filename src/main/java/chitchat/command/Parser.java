@@ -38,9 +38,11 @@ public class Parser {
      */
     public void parseCommand(String input) {
         try {
+            // Handle list command
             if (input.equals("list")) {
                 taskList.listTasks(ui);
 
+            // Handle mark command
             } else if (input.startsWith("mark")) {
                 int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -51,6 +53,7 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle unmark command
             } else if (input.startsWith("unmark")) {
                 int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -62,6 +65,7 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle todo command
             } else if (input.startsWith("todo")) {
 
                 if (input.length() <= 5) {
@@ -77,6 +81,7 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle deadline command
             } else if (input.startsWith("deadline")) {
 
                 if (!input.contains(" /by ")) {
@@ -101,6 +106,7 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle event command
             } else if (input.startsWith("event")) {
 
                 if (!input.contains(" /from ") || !input.contains(" /to ")) {
@@ -126,6 +132,7 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle delete command
             } else if (input.startsWith("delete")) {
                 int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -140,12 +147,14 @@ public class Parser {
                 ui.showLine();
                 storage.saveTasks(taskList);
 
+            // Handle exit command
             } else if (input.equals("bye")) {
                 ui.showLine();
                 System.out.println("Bye! Hope to see you again soon! :)");
                 ui.showLine();
                 System.exit(0);
 
+            // Handle invalid commands
             } else {
                 throw new ChitChatException("Sorry, you need to use keywords "
                         + "todo/deadline/event to specify your tasks!");
