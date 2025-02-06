@@ -166,7 +166,7 @@ public class Parser {
                 }
 
                 taskList.findTasks(keyword, ui);
-                
+
             // Handle exit command
             } else if (input.equals("bye")) {
                 ui.showLine();
