@@ -9,6 +9,9 @@ import chitchat.task.Event;
 import chitchat.task.TaskList;
 import chitchat.task.Todo;
 import chitchat.ui.Ui;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 
 /**
  * Handles user commands by parsing input and executing corresponding actions.
@@ -36,11 +39,12 @@ public class Parser {
      *
      * @param input User input.
      */
-    public void parseCommand(String input) {
+    public String parseCommand(String input) {
+        String output = "";
         try {
             // Handle list command
-            if (input.equals("list")) {
-                taskList.listTasks(ui);
+            if (input.equalsIgnoreCase("list")) {
+                return taskList.listTasks(ui);
 
             // Handle mark command
             } else if (input.startsWith("mark")) {
@@ -48,9 +52,9 @@ public class Parser {
 
                 taskList.markTask(taskIndex);
 
-                ui.showLine();
-                System.out.println("Nice! I've marked this task as done:\n  " + taskList.getTasks().get(taskIndex));
-                ui.showLine();
+                //ui.showLine();
+                output = "Nice! I've marked this task as done:\n  " + taskList.getTasks().get(taskIndex);
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle unmark command
@@ -59,10 +63,10 @@ public class Parser {
 
                 taskList.unmarkTask(taskIndex);
 
-                ui.showLine();
-                System.out.println("OK, I've marked this task as not done yet:\n  "
-                        + taskList.getTasks().get(taskIndex));
-                ui.showLine();
+                //ui.showLine();
+                output = "OK, I've marked this task as not done yet:\n  "
+                        + taskList.getTasks().get(taskIndex);
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle todo command
@@ -79,11 +83,11 @@ public class Parser {
                 }
 
                 taskList.addTask(new Todo(description));
-                ui.showLine();
-                System.out.println("Got it. I've added this task:\n" + "  "
-                        + taskList.getTasks().get(taskList.size() - 1));
-                System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
-                ui.showLine();
+                //ui.showLine();
+                output = "Got it. I've added this task:\n" + "  "
+                        + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
+                        + " task(s) in the list.";
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle deadline command
@@ -104,11 +108,11 @@ public class Parser {
                 }
 
                 taskList.addTask(new Deadline(description, by));
-                ui.showLine();
-                System.out.println("Got it. I've added this task:\n" + "  "
-                        + taskList.getTasks().get(taskList.size() - 1));
-                System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
-                ui.showLine();
+                //ui.showLine();
+                output = "Got it. I've added this task:\n" + "  "
+                        + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
+                        + " task(s) in the list.";
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle event command
@@ -130,11 +134,11 @@ public class Parser {
                 }
 
                 taskList.addTask(new Event(description, from, to));
-                ui.showLine();
-                System.out.println("Got it. I've added this task:\n" + "  "
-                        + taskList.getTasks().get(taskList.size() - 1));
-                System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
-                ui.showLine();
+                //ui.showLine();
+                output = "Got it. I've added this task:\n" + "  "
+                        + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
+                       + " task(s) in the list.";
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle delete command
@@ -145,11 +149,11 @@ public class Parser {
                     throw new ChitChatException("Please enter a valid task number!");
                 }
 
-                ui.showLine();
-                System.out.println("Noted. I've removed this task:\n  " + taskList.getTasks().get(taskIndex));
+                //ui.showLine();
+                output = "Noted. I've removed this task:\n  " + taskList.getTasks().get(taskIndex);
                 taskList.deleteTask(taskIndex);
-                System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
-                ui.showLine();
+                output += "\nNow you have " + taskList.size() + " task(s) in the list.";
+                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle find command
@@ -165,14 +169,19 @@ public class Parser {
                     throw new ChitChatException("Invalid format! Please use: find <keyword(s)>");
                 }
 
-                taskList.findTasks(keyword, ui);
+                return taskList.findTasks(keyword, ui);
 
             // Handle exit command
-            } else if (input.equals("bye")) {
-                ui.showLine();
-                System.out.println("Bye! Hope to see you again soon! :)");
-                ui.showLine();
-                System.exit(0);
+            } else if (input.equalsIgnoreCase("bye")) {
+                //ui.showLine();
+                output = "Bye! Hope to see you again soon! :)";
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(event -> {
+                    Platform.exit();
+                });
+                pause.play();
+                //ui.showLine();
+                //System.exit(0);
 
             // Handle invalid commands
             } else {
@@ -182,12 +191,13 @@ public class Parser {
 
         } catch (ChitChatException | IOException e) {
             ui.showLine();
-            ui.showError(e.getMessage());
+            output = e.getMessage();
             ui.showLine();
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             ui.showLine();
             ui.showError("Please enter a valid task number!");
             ui.showLine();
         }
+        return output;
     }
 }

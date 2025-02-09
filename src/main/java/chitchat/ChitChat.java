@@ -11,6 +11,7 @@ import chitchat.ui.Ui;
  * A task manager program that allows users to manage tasks through a command-line interface.
  * Tasks are saved to a file ('chitchat.txt') on the hard disk and the list is loaded on start up of the chatbot.
  */
+@SuppressWarnings("checkstyle:CommentsIndentation")
 public class ChitChat {
     private final Storage storage;
     private final TaskList tasks;
@@ -38,23 +39,40 @@ public class ChitChat {
     }
 
     /**
-     * Starts the chatbot and processes user commands.
+     * Constructs a ChitChat object with a default filepath to store tasks.
      */
-    public void run() {
-        ui.showWelcome();
-        while (true) {
-            String input = ui.readCommand();
-            parser.parseCommand(input);
-        }
+    public ChitChat() {
+        this("./data/chitchat.txt");
     }
 
     /**
-     * Initializes and runs the chatbot.
+     * Processes user input/command and returns the response.
      *
-     * @param args
+     * @param input User input/command
+     * @return Response to the command
      */
-    public static void main(String[] args) {
-        new ChitChat("data/chitchat.txt").run();
+    public String processCommand(String input) {
+        return parser.parseCommand(input);
     }
+
+//    /**
+//     * Starts the chatbot and processes user commands.
+//     */
+//    public void run() {
+//        ui.showWelcome();
+//        while (true) {
+//            String input = ui.readCommand();
+//            parser.parseCommand(input);
+//        }
+//    }
+//
+//    /**
+//     * Initializes and runs the chatbot.
+//     *
+//     * @param args
+//     */
+//    public static void main(String[] args) {
+//        new ChitChat("data/chitchat.txt").run();
+//    }
 }
 
