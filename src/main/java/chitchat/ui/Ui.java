@@ -37,8 +37,8 @@ public class Ui {
      *
      * @param message Message describing the error.
      */
-    public void showError(String message) {
-        System.out.println("Error: " + message);
+    public String showError(String message) {
+        return "Error: " + message;
     }
 
     /**

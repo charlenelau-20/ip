@@ -79,20 +79,23 @@ public class TaskList {
      * Lists the tasks in the task list.
      *
      * @param ui Ui instance used to display the tasks.
+     * @return List of tasks as a string.
      */
-    public void listTasks(Ui ui) {
+    public String listTasks(Ui ui) {
+        String output = "";
         if (tasks.isEmpty()) {
-            ui.showLine();
-            System.out.println("Your task list is empty!");
-            ui.showLine();
+            //ui.showLine();
+            output = "Your task list is empty!";
+            //ui.showLine();
         } else {
-            ui.showLine();
-            System.out.println("Here are the tasks in your list:");
+            //ui.showLine();
+            output = "Here are the tasks in your list:\n";
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + "." + tasks.get(i));
+                output += (i + 1) + "." + tasks.get(i) + "\n";
             }
-            ui.showLine();
+            //ui.showLine();
         }
+        return output;
     }
 
     /**
@@ -100,9 +103,11 @@ public class TaskList {
      *
      * @param keyword Keyword input by the user.
      * @param ui Ui instance used to display the tasks.
+     * @return Search results as a string.
      */
-    public void findTasks(String keyword, Ui ui) {
+    public String findTasks(String keyword, Ui ui) {
         ArrayList<Task> searchResults = new ArrayList<>();
+        String output = "";
 
         for (Task task : tasks) {
             if (task.toString().contains(keyword)) {
@@ -111,17 +116,18 @@ public class TaskList {
         }
 
         if (searchResults.isEmpty()) {
-            ui.showLine();
-            System.out.println("No matching tasks found!");
-            ui.showLine();
+            //ui.showLine();
+            output = "No matching tasks found!";
+            //ui.showLine();
         } else {
-            ui.showLine();
-            System.out.println("Here are the matching tasks found:");
+            //ui.showLine();
+            output = "Here are the matching tasks found:";
             for (int i = 0; i < searchResults.size(); i++) {
-                System.out.println((i + 1) + "." + searchResults.get(i));
+                output += (i + 1) + "." + searchResults.get(i) + "\n";
             }
-            ui.showLine();
+            //ui.showLine();
         }
+        return output;
     }
 
     /**

@@ -30,7 +30,7 @@ test {
 }
 
 application {
-    mainClass.set("chitchat.ChitChat")
+    mainClass.set("chitchat.Launcher")
 }
 
 shadowJar {
