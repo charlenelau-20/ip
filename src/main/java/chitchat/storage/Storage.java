@@ -30,6 +30,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         assert filePath != null : "File path should not be null";
+        assert !filePath.trim().isEmpty() : "File path should not be empty";
         this.filePath = filePath;
     }
 
@@ -40,13 +41,18 @@ public class Storage {
      * @throws IOException If there is a problem writing to the file.
      */
     public void saveTasks(TaskList tasks) throws IOException {
+        assert tasks != null : "Task list should not be null";
+
         ArrayList<Task> taskList = tasks.getTasks();
+
+        assert taskList != null : "taskList should not be null";
 
         File file = new File(filePath);
         file.getParentFile().mkdirs();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Task task : taskList) {
+                assert task != null : "Individual tasks should not be null";
                 writer.write(task.toFileFormat());
                 writer.newLine();
             }
@@ -62,6 +68,7 @@ public class Storage {
      */
     private Task parseTasks(String line) {
         assert line != null : "Line for parsing should not be null";
+        assert !line.trim().isEmpty() : "Line for parsing should not be empty";
 
         try {
             String[] parts = line.split(" \\| ");
@@ -100,6 +107,7 @@ public class Storage {
         File file = new File(filePath);
 
         assert filePath != null : "File path should not be null";
+        assert !filePath.trim().isEmpty() : "File path should not be empty";
 
         if (!file.exists()) {
             return tasks;
