@@ -25,6 +25,7 @@ public class ChitChat {
      * @param filePath Path to the file where tasks are saved.
      */
     public ChitChat(String filePath) {
+        assert filePath != null : "File path should not be null";
         storage = new Storage(filePath);
         ui = new Ui();
         TaskList loadedTasks;
@@ -36,6 +37,7 @@ public class ChitChat {
         }
         tasks = loadedTasks;
         parser = new Parser(tasks, ui, storage);
+        assert parser != null : "Parser should be initialized";
     }
 
     /**

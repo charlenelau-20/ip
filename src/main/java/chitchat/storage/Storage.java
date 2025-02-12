@@ -29,6 +29,7 @@ public class Storage {
      * @param filePath Path to the file where the tasks are stored.
      */
     public Storage(String filePath) {
+        assert filePath != null : "File path should not be null";
         this.filePath = filePath;
     }
 
@@ -60,6 +61,8 @@ public class Storage {
      * @return Task object if line is in the correct format or null if in incorrect format.
      */
     private Task parseTasks(String line) {
+        assert line != null : "Line for parsing should not be null";
+
         try {
             String[] parts = line.split(" \\| ");
             String taskType = parts[0];
@@ -95,6 +98,8 @@ public class Storage {
     public ArrayList<Task> loadTasks() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
+
+        assert filePath != null : "File path should not be null";
 
         if (!file.exists()) {
             return tasks;

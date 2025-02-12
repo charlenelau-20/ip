@@ -38,6 +38,7 @@ public class Ui {
      * @param message Message describing the error.
      */
     public String showError(String message) {
+        assert message != null : "Error message should not be null";
         return "Error: " + message;
     }
 

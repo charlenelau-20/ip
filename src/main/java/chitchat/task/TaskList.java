@@ -33,6 +33,7 @@ public class TaskList {
      * @param task Task to be added to task list.
      */
     public void addTask(Task task) {
+        assert task != null : "Task to be added should not be null";
         tasks.add(task);
     }
 
@@ -106,6 +107,7 @@ public class TaskList {
      * @return Search results as a string.
      */
     public String findTasks(String keyword, Ui ui) {
+        assert keyword != null : "Find keyword should not be null";
         ArrayList<Task> searchResults = new ArrayList<>();
         String output = "";
 

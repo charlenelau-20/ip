@@ -16,6 +16,7 @@ public class Task {
      * @param description Description of task.
      */
     public Task(String description) {
+        assert description != null : "Task description should not be null";
         this.description = description;
         this.isDone = false;
     }
@@ -27,6 +28,7 @@ public class Task {
      * @param isDone Completion status of task.
      */
     public Task(String description, boolean isDone) {
+        assert description != null : "Task description should not be null";
         this.description = description;
         this.isDone = false;
     }
@@ -61,6 +63,7 @@ public class Task {
      * @return A string representing the task in file format.
      */
     public String toFileFormat() {
+        assert description != null : "Task description should not be null";
         return (isDone ? 1 : 0) + " | " + description;
     }
 
