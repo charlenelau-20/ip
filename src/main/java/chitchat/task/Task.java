@@ -30,7 +30,7 @@ public class Task {
     public Task(String description, boolean isDone) {
         assert description != null : "Task description should not be null";
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     /**

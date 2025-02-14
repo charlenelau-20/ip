@@ -56,25 +56,5 @@ public class ChitChat {
     public String processCommand(String input) {
         return parser.parseCommand(input);
     }
-
-//    /**
-//     * Starts the chatbot and processes user commands.
-//     */
-//    public void run() {
-//        ui.showWelcome();
-//        while (true) {
-//            String input = ui.readCommand();
-//            parser.parseCommand(input);
-//        }
-//    }
-//
-//    /**
-//     * Initializes and runs the chatbot.
-//     *
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//        new ChitChat("data/chitchat.txt").run();
-//    }
 }
 

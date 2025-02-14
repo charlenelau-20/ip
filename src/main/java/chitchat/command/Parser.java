@@ -51,10 +51,7 @@ public class Parser {
                 int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
                 taskList.markTask(taskIndex);
-
-                //ui.showLine();
                 output = "Nice! I've marked this task as done:\n  " + taskList.getTasks().get(taskIndex);
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle unmark command
@@ -62,11 +59,8 @@ public class Parser {
                 int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
                 taskList.unmarkTask(taskIndex);
-
-                //ui.showLine();
                 output = "OK, I've marked this task as not done yet:\n  "
                         + taskList.getTasks().get(taskIndex);
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle todo command
@@ -83,11 +77,9 @@ public class Parser {
                 }
 
                 taskList.addTask(new Todo(description));
-                //ui.showLine();
                 output = "Got it. I've added this task:\n" + "  "
                         + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
                         + " task(s) in the list.";
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle deadline command
@@ -108,11 +100,9 @@ public class Parser {
                 }
 
                 taskList.addTask(new Deadline(description, by));
-                //ui.showLine();
                 output = "Got it. I've added this task:\n" + "  "
                         + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
                         + " task(s) in the list.";
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle event command
@@ -134,11 +124,9 @@ public class Parser {
                 }
 
                 taskList.addTask(new Event(description, from, to));
-                //ui.showLine();
                 output = "Got it. I've added this task:\n" + "  "
                         + taskList.getTasks().get(taskList.size() - 1) + "\nNow you have " + taskList.size()
                        + " task(s) in the list.";
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle delete command
@@ -148,12 +136,9 @@ public class Parser {
                 if (taskIndex < 0 || taskIndex >= taskList.size()) {
                     throw new ChitChatException("Please enter a valid task number!");
                 }
-
-                //ui.showLine();
                 output = "Noted. I've removed this task:\n  " + taskList.getTasks().get(taskIndex);
                 taskList.deleteTask(taskIndex);
                 output += "\nNow you have " + taskList.size() + " task(s) in the list.";
-                //ui.showLine();
                 storage.saveTasks(taskList);
 
             // Handle find command
@@ -173,15 +158,12 @@ public class Parser {
 
             // Handle exit command
             } else if (input.equalsIgnoreCase("bye")) {
-                //ui.showLine();
                 output = "Bye! Hope to see you again soon! :)";
                 PauseTransition pause = new PauseTransition(Duration.seconds(1));
                 pause.setOnFinished(event -> {
                     Platform.exit();
                 });
                 pause.play();
-                //ui.showLine();
-                //System.exit(0);
 
             // Handle invalid commands
             } else {
@@ -190,13 +172,9 @@ public class Parser {
             }
 
         } catch (ChitChatException | IOException e) {
-            ui.showLine();
             output = e.getMessage();
-            ui.showLine();
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            ui.showLine();
-            ui.showError("Please enter a valid task number!");
-            ui.showLine();
+            output = "Please enter a valid task number!";
         }
         return output;
     }
