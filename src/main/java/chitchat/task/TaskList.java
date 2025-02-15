@@ -123,7 +123,7 @@ public class TaskList {
             //ui.showLine();
         } else {
             //ui.showLine();
-            output = "Here are the matching tasks found:";
+            output = "Here are the matching tasks found:\n";
             for (int i = 0; i < searchResults.size(); i++) {
                 output += (i + 1) + "." + searchResults.get(i) + "\n";
             }
