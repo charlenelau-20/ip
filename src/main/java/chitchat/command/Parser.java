@@ -155,7 +155,14 @@ public class Parser {
                 }
 
                 return taskList.findTasks(keyword, ui);
-
+            // Handle help command
+            } else if (input.equalsIgnoreCase("help")) {
+                output = "Here is a list of the commands you can use:\n1. todo <task>\n-> adds a todo task\n2. deadline"
+                        + " <task> /by <yyyy-mm-dd HHmm>\n-> adds a deadline task\n3. event <event name> /from "
+                        + "<yyyy-mm-dd HHmm> /to <yyyy-mm-dd HHmm>\n-> adds an event\n4. list\n-> lists all tasks in "
+                        + "your task list\n5. mark / unmark <task number>\n-> marks task as done or not done\n"
+                        + "6. delete <task number>\n-> deletes task\n7. find <keyword(s)>\n-> finds tasks which contain"
+                        + " <keyword(s)>\n8. bye\n-> exits application";
             // Handle exit command
             } else if (input.equalsIgnoreCase("bye")) {
                 output = "Bye! Hope to see you again soon! :)";
