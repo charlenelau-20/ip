@@ -85,16 +85,12 @@ public class TaskList {
     public String listTasks(Ui ui) {
         String output = "";
         if (tasks.isEmpty()) {
-            //ui.showLine();
             output = "Your task list is empty!";
-            //ui.showLine();
         } else {
-            //ui.showLine();
             output = "Here are the tasks in your list:\n";
             for (int i = 0; i < tasks.size(); i++) {
                 output += (i + 1) + "." + tasks.get(i) + "\n";
             }
-            //ui.showLine();
         }
         return output;
     }
@@ -118,16 +114,12 @@ public class TaskList {
         }
 
         if (searchResults.isEmpty()) {
-            //ui.showLine();
             output = "No matching tasks found!";
-            //ui.showLine();
         } else {
-            //ui.showLine();
             output = "Here are the matching tasks found:\n";
             for (int i = 0; i < searchResults.size(); i++) {
                 output += (i + 1) + "." + searchResults.get(i) + "\n";
             }
-            //ui.showLine();
         }
         return output;
     }
