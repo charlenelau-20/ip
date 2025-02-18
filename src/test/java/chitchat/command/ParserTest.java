@@ -1,9 +1,5 @@
 package chitchat.command;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -12,12 +8,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+import chitchat.exception.ChitChatException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import chitchat.storage.Storage;
 import chitchat.task.TaskList;
 import chitchat.ui.Ui;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
     private static final String TEST_FILE_PATH = "test_data/chitchat_test.txt";
@@ -97,10 +96,8 @@ public class ParserTest {
 
     @Test
     void testInvalidCommand() {
-        parser.parseCommand("blah");
-
         // check that output shows error message
-        String output = outputStream.toString();
-        assertTrue(output.contains("Sorry, you need to use keywords"));
+        String output = parser.parseCommand("blah");
+        assertTrue(output.contains("Please use command 'help'"));
     }
 }
