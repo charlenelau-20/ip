@@ -67,7 +67,7 @@ public class Parser {
             } else if (input.startsWith("todo")) {
 
                 if (input.length() <= 5) {
-                    throw new ChitChatException("The description of a task cannot be empty!");
+                    throw new ChitChatException("Invalid format! Please use: todo <task>.");
                 }
 
                 String description = input.substring(5).trim();
