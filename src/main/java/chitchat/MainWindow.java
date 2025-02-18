@@ -1,6 +1,5 @@
 package chitchat;
 
-import chitchat.command.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
