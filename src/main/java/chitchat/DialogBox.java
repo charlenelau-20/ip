@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -30,7 +31,7 @@ public class DialogBox extends HBox {
      * @param text Text to be shown in the dialogue box.
      * @param img Image representing speaker (user/chatbot).
      */
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, boolean isUser) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -42,6 +43,17 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        Circle clip = new Circle(37);
+        clip.setCenterX(50);
+        clip.setCenterY(50);
+        displayPicture.setClip(clip);
+
+        if (isUser) {
+            dialog.getStyleClass().add("user-label");
+        } else {
+            dialog.getStyleClass().add("bot-label");
+        }
     }
 
     /**
@@ -63,7 +75,7 @@ public class DialogBox extends HBox {
      * @return DialogBox.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img, true);
     }
 
     /**
@@ -73,8 +85,11 @@ public class DialogBox extends HBox {
      * @param img ChitChat image.
      * @return DialogBox.
      */
-    public static DialogBox getChitChatDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getChitChatDialog(String text, Image img, boolean isError) {
+        var db = new DialogBox(text, img, false);
+        if (isError) {
+            db.dialog.setStyle("-fx-background-color: tomato; -fx-border-color: red; -fx-text-fill: white");
+        }
         db.flip();
         return db;
     }

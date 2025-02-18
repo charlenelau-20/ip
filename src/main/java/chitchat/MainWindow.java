@@ -23,7 +23,6 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private ChitChat chitchat;
-    private Parser parser;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userImage.png"));
     private Image chitchatImage = new Image(this.getClass().getResourceAsStream("/images/chitchatImage.png"));
@@ -36,7 +35,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
         String welcomeMessage = "Hey there, I'm ChitChat!\nWhat can I do for you?";
-        dialogContainer.getChildren().add(DialogBox.getChitChatDialog(welcomeMessage, chitchatImage));
+        dialogContainer.getChildren().add(DialogBox.getChitChatDialog(welcomeMessage, chitchatImage, false));
     }
 
     /**
@@ -56,8 +55,9 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         String response = chitchat.processCommand(input);
-        System.out.println("response: " + response);
-        dialogContainer.getChildren().add(DialogBox.getChitChatDialog(response, chitchatImage));
+        boolean isError = response.startsWith("Sorry") || response.startsWith("Invalid")
+                || response.startsWith("Please");
+        dialogContainer.getChildren().add(DialogBox.getChitChatDialog(response, chitchatImage, isError));
         userInput.clear();
     }
 }
