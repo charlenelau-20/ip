@@ -202,12 +202,12 @@ public class Parser {
     }
 
     private String handleHelp() {
-        return "Here is a list of the commands you can use:\n1. todo <task>\n-> adds a todo task\n2. deadline"
-                + " <task> /by <yyyy-mm-dd HHmm>\n-> adds a deadline task\n3. event <event name> /from "
-                + "<yyyy-mm-dd HHmm> /to <yyyy-mm-dd HHmm>\n-> adds an event\n4. list\n-> lists all tasks in "
-                + "your task list\n5. mark / unmark <task number>\n-> marks task as done or not done\n"
-                + "6. delete <task number>\n-> deletes task\n7. find <keyword(s)>\n-> finds tasks which contain"
-                + " <keyword(s)>\n8. bye\n-> exits application";
+        return "Here is a list of the commands you can use:\n1. todo <task>\n-> adds a todo task\n\n2. deadline"
+                + " <task> /by <yyyy-mm-dd HHmm>\n-> adds a deadline task\n\n3. event <event name> /from "
+                + "<yyyy-mm-dd HHmm> /to <yyyy-mm-dd HHmm>\n-> adds an event\n\n4. list\n-> lists all tasks in "
+                + "your task list\n\n5. mark / unmark <task number>\n-> marks task as done or not done\n\n"
+                + "6. delete <task number>\n-> deletes task\n\n7. find <keyword(s)>\n-> finds tasks which contain"
+                + " <keyword(s)>\n\n8. bye\n-> exits application";
     }
 
     private String handleExit() {
