@@ -125,16 +125,6 @@ public class TaskList {
     }
 
     /**
-     * Checks if task list is empty.
-     * Returns true if empty and false otherwise.
-     *
-     * @return True if empty, false otherwise.
-     */
-    public boolean isEmpty() {
-        return tasks.isEmpty();
-    }
-
-    /**
      * Returns the size of the task list.
      *
      * @return Size of the task list.
