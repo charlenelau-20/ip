@@ -7,7 +7,7 @@ import javafx.application.Application;
  */
 public class Launcher {
     /**
-     * Entry point for launching the ChitChat application.
+     * Launches the ChitChat application.
      *
      * @param args Command-line arguments passed into the application.
      */

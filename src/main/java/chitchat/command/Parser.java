@@ -85,10 +85,23 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles list command.
+     *
+     * @return List of tasks.
+     */
     private String handleList() {
         return taskList.listTasks(ui);
     }
 
+    /**
+     * Handles mark command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If index is out of bounds.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleMark(String input) throws ChitChatException, IOException {
         String output = "";
         int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -99,6 +112,14 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles unmark command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If index is out of bounds.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleUnmark(String input) throws ChitChatException, IOException {
         int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -108,6 +129,14 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles todo command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If input format is incorrect.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleTodo(String input) throws ChitChatException, IOException {
         if (input.length() <= 5) {
             throw new ChitChatException("Invalid format! Please use: todo <task>.");
@@ -127,6 +156,14 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles deadline command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If input format is incorrect.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleDeadline(String input) throws ChitChatException, IOException {
         if (!input.contains(" /by ")) {
             throw new ChitChatException(
@@ -150,6 +187,14 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles event command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If input format is incorrect.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleEvent(String input) throws ChitChatException, IOException {
         if (!input.contains(" /from ") || !input.contains(" /to ")) {
             throw new ChitChatException("Invalid format! "
@@ -174,6 +219,14 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles delete command.
+     *
+     * @param input User input.
+     * @return String of response.
+     * @throws ChitChatException If index is out of bounds.
+     * @throws IOException If there is a problem saving the tasks.
+     */
     private String handleDelete(String input) throws ChitChatException, IOException {
         int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -187,6 +240,13 @@ public class Parser {
         return output;
     }
 
+    /**
+     * Handles find command.
+     *
+     * @param input User input.
+     * @return String of task(s) found.
+     * @throws ChitChatException If input format is incorrect.
+     */
     private String handleFind(String input) throws ChitChatException {
         if (input.length() <= 5) {
             throw new ChitChatException("Invalid format! Please use: find <keyword(s)>");
@@ -201,6 +261,11 @@ public class Parser {
         return taskList.findTasks(keyword, ui);
     }
 
+    /**
+     * Handles help command.
+     *
+     * @return List of commands that can be used.
+     */
     private String handleHelp() {
         return "Here is a list of the commands you can use:\n1. todo <task>\n-> adds a todo task\n\n2. deadline"
                 + " <task> /by <yyyy-mm-dd HHmm>\n-> adds a deadline task\n\n3. event <event name> /from "
@@ -210,6 +275,11 @@ public class Parser {
                 + " <keyword(s)>\n\n8. bye\n-> exits application";
     }
 
+    /**
+     * Handles bye (exit) command.
+     *
+     * @return String of response.
+     */
     private String handleExit() {
         String output = "Bye! Hope to see you again soon! :)";
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
