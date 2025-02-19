@@ -87,6 +87,6 @@ Now you have 2 task(s) in the list.
 
 Exit the app on command: `bye`.
 
-## Credits
+## Acknowledgements
 chitchatImage.png: https://images.app.goo.gl/9GUZ1y6NvtvQWbCY7
 userImage.png: https://images.app.goo.gl/Jkt7WeDkzEcW4uJD6
