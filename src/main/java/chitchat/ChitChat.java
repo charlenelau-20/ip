@@ -18,6 +18,7 @@ public class ChitChat {
     private final Ui ui;
     private final Parser parser;
 
+    //Solution below adapted from ChatGPT
     /**
      * Initializes the chatbot.
      * Loads tasks from the storage file, or generates an empty list if there are no saved tasks.

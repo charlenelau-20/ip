@@ -15,6 +15,7 @@ public class Deadline extends Task {
 
     private LocalDateTime by;
 
+    //Solution below adapted from ChatGPT
     /**
      * Initializes a Deadline task object with a description and a specified deadline ('by').
      *

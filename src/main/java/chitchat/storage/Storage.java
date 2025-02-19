@@ -1,3 +1,4 @@
+//Solution below adapted from ChatGPT
 package chitchat.storage;
 
 import java.io.BufferedReader;

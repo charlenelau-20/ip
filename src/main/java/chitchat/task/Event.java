@@ -15,6 +15,7 @@ public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
+    //Solution below adapted from ChatGPT
     /**
      * Initializes an Event task object with a description, start time ('from'), and end time ('to').
      *
