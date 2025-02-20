@@ -275,6 +275,7 @@ public class Parser {
                 + " <keyword(s)>\n\n8. bye\n-> exits application";
     }
 
+    //Solution below adapted from ChatGPT
     /**
      * Handles bye (exit) command.
      *
